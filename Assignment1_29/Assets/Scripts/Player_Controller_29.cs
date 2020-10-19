@@ -1,7 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Security.Cryptography;
 using UnityEngine;
 
 public class Player_Controller_29 : MonoBehaviour
@@ -9,9 +7,9 @@ public class Player_Controller_29 : MonoBehaviour
     float speed = 10.0f;
     float zLimit = 18.30f;
     float xLimit = 18.30f;
-    float yLimit = 0.9f;
 
     float gravityModifier = 2.0f;
+    private RaycastHit hit;
 
     bool pressSpace = false;
 
@@ -28,6 +26,7 @@ public class Player_Controller_29 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         float verticalInput = Input.GetAxis("Vertical");
         float horizontalInput = Input.GetAxis("Horizontal");
 
@@ -52,19 +51,13 @@ public class Player_Controller_29 : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.Space) && pressSpace)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            playerRB.AddForce(Vector3.up * 15, ForceMode.Impulse);
-            pressSpace = false;
+            if (Physics.Raycast(transform.position, -Vector3.up, out hit, 1))
+            { // can jump
+                playerRb.AddForce(Vector3.up * 10, ForceMode.Impulse);
+            }
         }
+
     }
-    void OnCollisionEnter(Collision col)
-    {
-        pressSpace = true;
-    }
-
-
-
 }
-
-
