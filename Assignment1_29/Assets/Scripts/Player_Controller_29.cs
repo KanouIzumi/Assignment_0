@@ -13,10 +13,9 @@ public class Player_Controller_29 : MonoBehaviour
 
     float gravityModifier = 2.0f;
 
-    Rigidbody playerRb;
-
     bool pressSpace = false;
 
+    Rigidbody playerRb;
 
     // Start is called before the first frame update
     void Start()
