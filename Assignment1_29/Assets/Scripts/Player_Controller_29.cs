@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Security.Cryptography;
 using UnityEngine;
 
@@ -12,9 +13,10 @@ public class Player_Controller_29 : MonoBehaviour
 
     float gravityModifier = 2.0f;
 
-    bool keypressed = false;
-
     Rigidbody playerRb;
+
+    bool pressSpace = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -49,5 +51,21 @@ public class Player_Controller_29 : MonoBehaviour
         {
             transform.position = new Vector3(xLimit, transform.position.y, transform.position.z);
         }
+
+
+        if (Input.GetKeyDown(KeyCode.Space) && pressSpace)
+        {
+            playerRB.AddForce(Vector3.up * 15, ForceMode.Impulse);
+            pressSpace = false;
+        }
     }
+    void OnCollisionEnter(Collision col)
+    {
+        pressSpace = true;
+    }
+
+
+
 }
+
+
