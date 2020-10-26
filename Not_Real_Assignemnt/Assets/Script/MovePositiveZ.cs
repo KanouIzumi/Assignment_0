@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MovePositiveZ : MonoBehaviour
 {
+    public GameObject childObject;
+    
     float ForwardSpeed = 10.0f;
     // Start is called before the first frame update
     void Start()
@@ -25,6 +27,6 @@ public class MovePositiveZ : MonoBehaviour
             transform.Translate(Vector3.forward * Time.deltaTime * ForwardSpeed);
         }
 
-        transform.Rotate(Vector3.up, ForwardSpeed * Time.deltaTime);
+        childObject.transform.Rotate(new Vector3(0,2,0));
     }
 }
