@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController_28 : MonoBehaviour
 {
-    bool isOnGround;
+    bool isOnFloor;
 
     float jumpForce = 10.0f;
     float gravityModifer = 2.0f;
@@ -19,7 +19,7 @@ public class PlayerController_28 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isOnGround = true;
+        isOnFloor = true;
 
         Physics.gravity *= gravityModifer;
 
@@ -68,7 +68,7 @@ public class PlayerController_28 : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("GamePlane"))
         {
-            isOnGround = true;
+            isOnFloor = true;
 
             playerRdr.material.color = playermtrls[5].color;
         }
@@ -76,11 +76,11 @@ public class PlayerController_28 : MonoBehaviour
 
     private void PlayerJump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
+        if (Input.GetKeyDown(KeyCode.Space) && isOnFloor)
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 
-            isOnGround = false;
+            isOnFloor = false;
 
             playerRdr.material.color = playermtrls[0].color;
         }
